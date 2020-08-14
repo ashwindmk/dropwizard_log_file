@@ -1,0 +1,37 @@
+template: Hello, %s, welcome to dropwizard.
+
+logging:
+  # log-levels: OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL
+  level: ALL
+
+  appenders:
+    - type: console
+      threshold: INFO
+      timeZone: UTC
+
+  loggers:
+      "demo-logger":
+        level: ALL
+        additive: false
+        appenders:
+          - type: console
+            threshold: ALL
+            timeZone: UTC
+          - type: file
+            threshold: ALL
+            timeZone: UTC
+            currentLogFilename: ../logs/app.log
+            archive: true
+            archivedLogFilenamePattern: ../logs/app-%d{yyyy-MM-dd-HH}-%i.log.gz
+            maxFileSize: 200B  # values in B, KiB, KB, MiB, MB, GiB, GB, TiB, TB, PiB, or PB.
+            archivedFileCount: 7  # This is not working in this project!
+
+server:
+  type: simple
+
+  applicationContextPath: /
+  adminContextPath: /admin
+
+  connector:
+    type: http
+    port: 4000

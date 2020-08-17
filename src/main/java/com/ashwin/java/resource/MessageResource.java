@@ -33,10 +33,11 @@ public class MessageResource {
     @Timed
     @Path("/greet")
     public Message greet(@QueryParam("name") Optional<String> name) {
-        LOG.debug(TAG + " | GET | Greeting name: " + name);
+        final String _name = name.orElse(defaultName);
+        LOG.debug(TAG + ": GET | Greeting name: " + _name);
 
-        final String msg = String.format(template, name.orElse(defaultName));
-        LOG.debug(TAG + " | GET | Greeting msg: " + msg);
+        final String msg = String.format(template, _name);
+        LOG.debug(TAG + ": GET | Greeting msg: " + msg);
 
         return new Message(counter.incrementAndGet(), msg);
     }
@@ -47,12 +48,12 @@ public class MessageResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Message greet(@NotNull @Valid final User user) {
-        LOG.debug(TAG + " | POST | Greeting user: " + user);
+        LOG.debug(TAG + ": POST | Greeting user: " + user);
 
         Optional<String> name = Optional.of(user.getName());
 
         final String msg = String.format(template, name.orElse(defaultName));
-        LOG.debug(TAG + " | POST | Greeting msg: " + msg);
+        LOG.debug(TAG + ": POST | Greeting msg: " + msg);
 
         return new Message(user.getId(), msg);
     }

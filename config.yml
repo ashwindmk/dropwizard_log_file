@@ -23,7 +23,7 @@ logging:
             currentLogFilename: ../logs/app.log
             archive: true
             archivedLogFilenamePattern: ../logs/app-%d{yyyy-MM-dd-HH}-%i.log.gz
-            maxFileSize: 200B  # values in B, KiB, KB, MiB, MB, GiB, GB, TiB, TB, PiB, or PB.
+            maxFileSize: 500MB  # values in B, KiB, KB, MiB, MB, GiB, GB, TiB, TB, PiB, or PB.
             archivedFileCount: 7  # This is not working in this project!
 
 server:

@@ -1,7 +1,7 @@
 template: Hello, %s, welcome to dropwizard.
 
 logging:
-  # log-levels: OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL
+  # log-levels: OFF < FATAL < ERROR < WARN < INFO < DEBUG < TRACE < ALL
   level: ALL
 
   appenders:
